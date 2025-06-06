@@ -1,0 +1,439 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* HTML et BODY prennent 100% de la hauteur de la fenêtre */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche le défilement global par défaut */
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  /*background: linear-gradient(135deg, #0d0d0d, #1a1a1a);*/
+
+  color: #f1f1f1;
+  display: flex; /* Active Flexbox */
+  flex-direction: column; /* Empile les enfants (header, container) verticalement */
+  align-items: center; /* Centre les enfants horizontalement */
+  justify-content: flex-start; /* Aligne le contenu au début */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background-image: url('images/Courtroom.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  filter: blur(5px);
+  -webkit-filter: blur(5px); /* Pour Safari */
+  z-index: -1; /* Place le fond derrière tout le contenu */
+}
+
+/* Header global (le titre principal) */
+#global-header {
+  width: 100%; /* Prend toute la largeur */
+  text-align: center;
+  padding: 10px 0 15px 0; /* Padding réduit */
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a); /* Fond pour la visibilité */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Ombre ajustée */
+}
+
+#global-header h1 {
+  font-size: 2.2rem; /* Taille de police réduite */
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffd500; /* Ombre ajustée */
+  margin: 0;
+}
+
+/* Container principal (pour le contenu du jeu) */
+.container {
+  max-width: 1200px; /* Max width légèrement réduit */
+  width: 100%;
+  text-align: center;
+  padding-top: 100px; /* Espace équivalent à la hauteur du header (ajusté) pour éviter le recouvrement */
+  padding-bottom: 15px; /* Padding en bas réduit */
+  padding-left: 10px; /* Ajout d'un padding latéral réduit */
+  padding-right: 10px; /* Ajout d'un padding latéral réduit */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; /* Permet au container de prendre l'espace restant */
+  min-height: 0;
+}
+
+/* Écrans du jeu (règles et quiz) */
+#rules-screen, #quiz-screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+    min-height: 0;
+}
+
+/* Main content (à l'intérieur des écrans de jeu) */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacement réduit */
+    min-height: 0;
+}
+
+/* Question */
+.question-box {
+  background: rgba(0, 0, 0, 0.454);
+  border: 1px solid #ccb100;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 8px #ccb800;
+  width: 98%;
+  max-width: 800px;
+  line-height: 1.4;
+  text-align: center; /* CENTER QUESTION TEXT */
+}
+
+/* Groupe de quiz */
+.groups-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.group {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  width: 250px;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(255, 111, 0, 0.2);
+  transition: transform 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 200px;
+  flex-shrink: 1;
+  min-height: 0;
+}
+
+.group:hover {
+  transform: translateY(-3px);
+  border-color: #ffffff;
+}
+
+.group.correct {
+  border-color: #00cc66;
+  box-shadow: 0 0 15px #00cc66;
+}
+
+.group h2 {
+  margin-bottom: 5px;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+/* Boutons de réponse */
+.answer-btn {
+  width: 100%;
+  padding: 6px;
+  margin: 3px 0;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #eee;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center; /* CENTER ANSWER BUTTON TEXT */
+  width: 100%;
+  transition: all 0.3s;
+  min-height: 0;
+  flex-shrink: 1;
+}
+
+.answer-btn:hover:not(:disabled) {
+  background-color: #ffff000f;
+  color: #ff0000;
+  border-color: #ffdd0013;
+}
+
+.answer-btn:disabled {
+  background-color: #444;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.answer-btn.correct-answer-bg {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: white !important;
+}
+
+.answer-btn.incorrect-answer-bg {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: white !important;
+}
+
+.answer-btn.selected {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+}
+
+/* Bouton suivant */
+#next {
+  background-color: #ff0000;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 0 10px #ff0000;
+  margin-top: 10px;
+}
+
+#next:hover:not(:disabled) {
+  background-color: #ff00003c;
+}
+
+#next:disabled {
+  background-color: #555;
+  color: #222;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Styles pour le bouton Démarrer */
+#start {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+  animation: pulse 2s infinite;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 15px;
+}
+
+#start:hover {
+  background-color: #45a049;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(69, 160, 73, 1);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(76, 175, 80, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+  }
+}
+
+#rules-screen .question-box {
+  padding: 12px;
+}
+
+#rules-screen .question-box h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+#rules-screen .question-box p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  text-align: left; /* ADDED: Aligns rules text to the left */
+}
+
+/* Styles pour le timer */
+#timer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e9ff44;
+  background-color: rgba(255, 0, 0, 0.263);
+  padding: 8px 15px;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+  z-index: 1001;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  min-height: 45px;
+  text-align: center;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+#timer.blink {
+  animation: blink 1s infinite;
+  color: red;
+  font-weight: bolder;
+}
+
+/* Styles pour la célébration (Bravo/Faux) */
+.celebration {
+    font-size: 1rem;
+    margin-top: 8px;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+/* Podium */
+.podium-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Pour les boîtes du podium */
+#quiz-screen .main div[style*="background-color"] {
+    flex-shrink: 0;
+    margin-bottom: 3px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #global-header {
+    padding: 8px 0 12px 0;
+  }
+  #global-header h1 {
+    font-size: 2rem;
+  }
+  .container {
+    padding-top: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .question-box {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+  .groups-wrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .group {
+    width: 98%;
+    max-width: 260px;
+    padding: 6px;
+  }
+  .group h2 {
+    font-size: 0.9rem;
+  }
+  .answer-btn {
+    font-size: 0.75rem;
+    padding: 5px;
+    margin: 2px 0;
+  }
+  #next, #start {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  #timer {
+    font-size: 1.3rem;
+    padding: 6px 10px;
+    top: 10px;
+    right: 10px;
+    min-width: 60px;
+    min-height: 35px;
+  }
+  .celebration {
+      font-size: 0.9rem;
+  }
+}
+
+footer {
+  width: 100%; /* Prend toute la largeur disponible */
+  text-align: left; /* Centre le texte */
+  padding: 15px 0 15px 20px; /* Ajoute un peu d'espace au-dessus et en dessous */
+  font-size: 0.85rem; /* Taille de police légèrement plus petite */
+  color: #ffffff; /* Couleur de texte gris clair */
+  margin-top: auto; /* Pousse le pied de page vers le bas s'il y a de l'espace */
+  z-index: 999; /* S'assure qu'il est bien visible */
+}
+
+@media (max-width: 480px) {
+  #global-header h1 {
+    font-size: 1.6rem;
+  }
+  .container {
+    padding-top: 50px;
+  }
+  .question-box {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  .group {
+    width: 100%;
+    min-width: unset;
+  }
+  .answer-btn {
+    font-size: 0.7rem;
+    padding: 4px;
+  }
+  #timer {
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    top: 5px;
+    right: 5px;
+    min-width: 50px;
+    min-height: 30px;
+  }
+  #next, #start {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}

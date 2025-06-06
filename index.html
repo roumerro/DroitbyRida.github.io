@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Tribunal - المحكمة</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="global-header">
+    <h1>Le Tribunal - المحكمة</h1>
+  </header>
+
+  <div class="container">
+    <div id="rules-screen">
+      <main>
+        <div class="question-box">
+          <h2>📜 Règles du Jeu 📜</h2>
+          <p>1. Fermez les cahiers.</p>
+          <p>2. 1 rangée = 1 groupe.</p>
+          <p>3. 30 secondes pour répondre à chaque question.</p>
+          <p>4. 1 personne par groupe répondra.</p>
+          <p>5. Répondez par des signes. Par exemple : réponse 1 = lever un doigt.</p>
+        </div>
+        <button id="start">⚖️ Commencer le Quiz ⚖️</button>
+      </main>
+    </div>
+
+    <div id="quiz-screen" style="display: none;">
+      <main>
+        <div id="question" class="question-box">Chargement...</div>
+        <div id="timer">30s</div>
+        <div id="quiz-container" class="groups-wrapper"></div>
+        <button id="next" disabled>Question Suivante ➤</button>
+      </main>
+    </div>
+  </div>
+  </div> <footer>
+      <p>By Rida Oumerrou 😎</p>
+    </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
