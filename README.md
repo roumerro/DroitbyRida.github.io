@@ -1,4 +1,4 @@
-⚖️ Le Tribunal - Quiz de Droit gavel 🏛️
+⚖️ Le Tribunal - المحكمة Quiz de Droit gavel 🏛️
 Bienvenue dans "Le Tribunal", un quiz interactif conçu pour rendre l'apprentissage du Droit plus accessible et engageant !
 
 📜 À Propos du Projet
